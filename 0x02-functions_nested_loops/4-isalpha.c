@@ -2,9 +2,9 @@
 /**
  * _isalpha - checks for alphabet character
  * @c: character to check
- * Return; 1 if lower case or upper case, 0 if not alphabet character
+ * Return: 1 if lower case or upper case, 0 if not alphabet character
  */
-int _isalpha (int c)
+int _isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 	{
