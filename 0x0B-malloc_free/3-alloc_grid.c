@@ -1,33 +1,37 @@
 #include "main.h"
 #include <stdio.h>
-#include <stdlib>
+#include <stdlib.h>
 /**
- * _strdup - Returns a pointer to a newly-allocated space in memory
- *           containing a copy of the string given as parameter.
- * @str:string
+ * alloc_grid - creates a 2 dimensional array of integers initialized to 0
+ * @width: int
+ * @height:int
  *
- * Return:char
+ * Return: a double pointer to the 2D array
  */
-char *_strdup(char *str)
+int **alloc_grid(int width, int height)
 {
-	char *s;
-	int i, l = 0;
+	int i, j;
+	int **a;
 
-	if (str == NULL)
+	if (width <= 0 || height <= 0)
 		return (NULL);
-
-	for (i = 0; str[i]; i++)
-		l++;
-
-	s = malloc(sizeof(char) * (l + 1));
-
-	if (s == NULL)
+	a = (int **)malloc(sizeof(int *) * height);
+	if (a == NULL)
 		return (NULL);
-
-	for (i = 0; str[i]; i++)
-		s[i] = str[i];
-
-	s[l] = '\0';
-
-	return (s);
+	for (i = 0; i < height; i++)
+	{
+		a[i] = (int *)malloc(sizeof(int) * width);
+		if (a[i] == NULL)
+		{
+			for (j = 0; j < i; j++)
+				free(a[j]);
+			free(a);
+			return (NULL);
+		}
+		for (j = 0; j < width; j++)
+		{
+			a[i][j] = 0;
+		}
+	}
+	return (a);
 }
